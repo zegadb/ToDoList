@@ -2,11 +2,11 @@
 function sortList(order)
 {
     let inputs = [];
-    document.querySelectorAll('.line')
+    document.querySelectorAll('.text')
     .forEach(item => inputs.push(item.textContent))
     if (order) inputs.sort();
     else inputs.sort().reverse();
-    document.querySelectorAll('.line')
+    document.querySelectorAll('.text')
     .forEach((item, index) => item.textContent = inputs[index])
 }
 // Sort button listener
@@ -24,17 +24,23 @@ function confirmInput(event)
     newP.textContent = event.target.value
     // console.log(newP)
     // console.log(event.target.parentElement.firstElementChild)
-    event.target.parentElement.insertBefore(newP, event.target.parentElement.firstElementChild)
-    event.target.parentElement.querySelector('input').remove()
+    event.target.outerHTML = newP.outerHTML
+    // event.target.parentElement.insertBefore(newP, event.target.parentElement.firstElementChild)
+    // event.target.parentElement.querySelector('input').remove()
 
-    document.querySelectorAll('.delete').forEach(item => { item.addEventListener('click', (event) => { if (event.target.parentElement.firstElementChild.className == 'text') event.target.parentElement.parentElement.remove()})})
+    // document.querySelectorAll('.delete').forEach(item => { item.addEventListener('click', (event) => { if (event.target.parentElement.firstElementChild.className == 'text') event.target.parentElement.parentElement.remove()})})
 }
 // Removes or clears the line
 function clearLine(event)
 {
-    if (event.target.parentElement.parentElement.firstElementChild.tagName == 'INPUT')
-        event.target.parentElement.parentElement.querySelector('input').value = '';
-    else event.target.parentElement.parentElement.remove();
+    let parent = document.querySelector('.input-area');
+    let line = event.target.parentElement.parentElement;
+    if (line.firstElementChild.tagName == 'INPUT')
+    {
+        if (line.firstElementChild.value != '') line.querySelector('input').value = '';
+        else if (parent.childElementCount != 1) {console.log(line.className); line.remove();}
+    }
+    else line.remove();
 }
 // Updates event listeners for appended elements
 function update()
@@ -50,14 +56,18 @@ function update()
     const dragArea = document.querySelector('.input-area')
     new Sortable(dragArea, {animation: 300})
     // Confirm input and turn it into text line
-    document.querySelector('input').addEventListener('keyup', (event) =>
-    { if (event.key == 'Enter' && event.target.value != '' && event.target.value != ' ') confirmInput(event); })
+    document.querySelectorAll('input')
+    .forEach(item => {
+        item.addEventListener('keyup', (event) =>
+        { if (event.key == 'Enter' && event.target.value != '' && event.target.value != ' ') confirmInput(event); })
+    })
 } update()
 // Add button listener
 document.querySelector('.add-button').addEventListener('click', () =>
 {
     let newElement = document.createElement('div')
-    newElement.innerHTML = '<div class="line">\n<input type="text">\n<button class="delete"><img src="images/delete.svg" alt="img"></button>\n</div>'
+    newElement.className = 'line'
+    newElement.innerHTML = '<input type="text">\n<button class="delete"><img src="images/delete.svg" alt="img"></button>'
     document.querySelector('.input-area').append(newElement)
     document.querySelector('.input-area').lastElementChild.scrollIntoView({behavior: "smooth"}) 
     update()
