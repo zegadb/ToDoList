@@ -22,7 +22,22 @@ function update()
     { event.target.src = 'images/deleteX.svg' })})
     document.querySelectorAll('.delete').forEach(item => { item.addEventListener('mouseout', (event) =>
     { event.target.src = 'images/delete.svg' })})
-    document.querySelectorAll('.delete').forEach(item => { item.addEventListener('click', (event) => { event.target.parentElement.parentElement.remove() })})
+    document.querySelectorAll('.delete').forEach(item => { item.addEventListener('click', (event) => { event.target.parentElement.parentElement.querySelector('input').value = '' })})
+    const dragArea = document.querySelector('.input-area')
+    new Sortable(dragArea, {animation: 350})
+    document.querySelector('input').addEventListener('keyup', (event) =>
+    {
+        if (event.key == 'Enter' && event.target.value != '' && event.target.value != ' ') {
+            let newP = document.createElement('div')
+            newP.className = 'text'
+            newP.textContent = event.target.value
+            console.log(newP)
+            console.log(event.target.parentElement.firstElementChild)
+            event.target.parentElement.insertBefore(newP, event.target.parentElement.firstElementChild)
+            event.target.parentElement.querySelector('input').remove()
+        }
+        document.querySelectorAll('.delete').forEach(item => { item.addEventListener('click', (event) => { if (event.target.parentElement.firstElementChild.className == 'text') event.target.parentElement.parentElement.remove()})})
+    })
 }
 update()
 

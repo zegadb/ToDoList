@@ -77,6 +77,18 @@ input {
     font-size: 14px;
     font-family: Roboto;
 }
+.text {
+    border: 0;
+    display: flex;
+    align-items: center;
+    width: 195px;
+    height: 30px;
+    outline: 0;
+    margin: 0 0 0 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: Roboto;
+}
 .delete {
     height: 20px;
     cursor: pointer;
