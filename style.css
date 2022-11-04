@@ -49,6 +49,17 @@ body {
     border: 0;
     transition: transform 80ms ease-in-out;
 }
+.sort img {
+    -webkit-filter: brightness(100%);
+}
+.sort img:hover {
+    -webkit-filter: brightness(0%);
+    -webkit-transition: all 0.8s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
 .sort:active {
     transform: scale(1.1);
 }
@@ -73,6 +84,7 @@ input {
     height: 30px;
     outline: 0;
     margin: 0 0 0 15px;
+    padding: 0;
     border-radius: 10px;
     font-size: 14px;
     font-family: Roboto;
@@ -110,9 +122,12 @@ input {
     background-color: #833AE0;
     cursor: pointer;
     box-shadow: 0 0 0 gray;
+    -webkit-filter: brightness(100%);
     transition: box-shadow 300ms ease-in-out, transform 80ms ease-in-out;
 }
 .add-button:hover {
+    -webkit-filter: brightness(90%);
+    -webkit-transition: all 0.5s ease;
     box-shadow: 0 0 10px gray;
 }
 .add-button:active {
