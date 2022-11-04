@@ -42,6 +42,8 @@ function clearLine(event)
     }
     else line.remove();
 }
+// Check if string only contains spaces
+function onlySpaces(str) { return str.trim().length === 0 }
 // Updates event listeners for appended elements
 function update()
 {
@@ -59,11 +61,11 @@ function update()
     document.querySelectorAll('input')
     .forEach(item => {
         item.addEventListener('keyup', (event) =>
-        { if (event.key == 'Enter' && event.target.value != '' && event.target.value != ' ') confirmInput(event); })
+        { if (event.key == 'Enter' && !onlySpaces(event.target.value)) {confirmInput(event); addElement();}})
     })
 } update()
-// Add button listener
-document.querySelector('.add-button').addEventListener('click', () =>
+// Add input to end
+function addElement()
 {
     let newElement = document.createElement('div')
     newElement.className = 'line'
@@ -71,4 +73,6 @@ document.querySelector('.add-button').addEventListener('click', () =>
     document.querySelector('.input-area').append(newElement)
     document.querySelector('.input-area').lastElementChild.scrollIntoView({behavior: "smooth"}) 
     update()
-})
+}
+// Add button listener
+document.querySelector('.add-button').addEventListener('click', addElement)
