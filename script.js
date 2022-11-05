@@ -73,7 +73,7 @@ function update()
             document.querySelectorAll('input').forEach(item => {
                 if (item.value == '') blankLineCounter++;
             })
-            if (!(blankLineCounter >= 1)) addElement();
+            if (!(blankLineCounter >= 1)) addElement(event);
         }})
     })
 } update()
@@ -84,9 +84,12 @@ function addElement(event)
     newElement.className = 'line'
     newElement.innerHTML = '<input type="text">\n<button class="delete"><img src="images/delete.svg" alt="img"></button>'
     document.querySelector('.input-area').append(newElement)
-    document.querySelector('.input-area').lastElementChild.scrollIntoView({behavior: "smooth"}) 
-    update()
+    document.querySelector('.input-area').lastElementChild.scrollIntoView({behavior: "smooth"})
     document.querySelector('.input-area').lastElementChild.firstElementChild.focus()
+    // event.target.parentElement.nextSibling.firstElementChild.focus()
+    if (document.querySelector('.input-area').childElementCount > 5)
+    document.querySelector('.input-area').lastElementChild.previousSibling.scrollIntoView({behavior: "smooth"});
+    update()
 }
 // Add button listener
 document.querySelector('.add-button').addEventListener('click', addElement)
