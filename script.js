@@ -3,11 +3,11 @@ function sortList(order)
 {
     let inputs = [];
     document.querySelectorAll('.text')
-    .forEach(item => inputs.push(item.textContent))
+    .forEach(item => inputs.push(item.value))
     if (order) inputs.sort();
     else inputs.sort().reverse();
     document.querySelectorAll('.text')
-    .forEach((item, index) => item.textContent = inputs[index])
+    .forEach((item, index) => item.value = inputs[index])
 }
 // Sort button listener
 document.querySelector('.sort').addEventListener('click', (event) =>
@@ -16,15 +16,17 @@ document.querySelector('.sort').addEventListener('click', (event) =>
     { event.target.src = 'images/upgray.svg'; sortList(true) }
     else { event.target.src = 'images/downgray.svg'; sortList(false); }
 })
-// Replaces inputs with text lines
+// Confims inputs; replaces inputs with text lines
 function confirmInput(event)
 {
-    let newP = document.createElement('div')
-    newP.className = 'text'
-    newP.textContent = event.target.value
+    event.target.readOnly = true
+    event.target.className = 'text'
+    // let newP = document.createElement('div')
+    // newP.className = 'text'
+    // newP.textContent = event.target.value
     // console.log(newP)
     // console.log(event.target.parentElement.firstElementChild)
-    event.target.outerHTML = newP.outerHTML
+    // event.target.outerHTML = newP.outerHTML
     // event.target.parentElement.insertBefore(newP, event.target.parentElement.firstElementChild)
     // event.target.parentElement.querySelector('input').remove()
 
