@@ -21,16 +21,6 @@ function confirmInput(event)
 {
     event.target.readOnly = true
     event.target.className = 'text'
-    // let newP = document.createElement('div')
-    // newP.className = 'text'
-    // newP.textContent = event.target.value
-    // console.log(newP)
-    // console.log(event.target.parentElement.firstElementChild)
-    // event.target.outerHTML = newP.outerHTML
-    // event.target.parentElement.insertBefore(newP, event.target.parentElement.firstElementChild)
-    // event.target.parentElement.querySelector('input').remove()
-
-    // document.querySelectorAll('.delete').forEach(item => { item.addEventListener('click', (event) => { if (event.target.parentElement.firstElementChild.className == 'text') event.target.parentElement.parentElement.remove()})})
 }
 // Removes or clears the line
 function clearLine(event)
