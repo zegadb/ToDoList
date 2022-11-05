@@ -1,6 +1,18 @@
 // Sorting confirmed lines
 function sortList(order)
 {
+    // Sending all blank inputs to the end
+    document.querySelectorAll('input')
+    .forEach(item => {
+        if (item.readOnly == false) {
+            let newElement = document.createElement('div')
+            newElement.className = 'line'
+            newElement.innerHTML = '<input type="text">\n<button class="delete"><img src="images/delete.svg" alt="img"></button>'
+            newElement.firstElementChild.value = item.value
+            item.parentElement.remove()
+            document.querySelector('.input-area').append(newElement)
+        }
+    })
     let inputs = [];
     document.querySelectorAll('.text')
     .forEach(item => inputs.push(item.value))
@@ -8,6 +20,7 @@ function sortList(order)
     else inputs.sort().reverse();
     document.querySelectorAll('.text')
     .forEach((item, index) => item.value = inputs[index])
+    update()
 }
 // Sort button listener
 document.querySelector('.sort').addEventListener('click', (event) =>
@@ -21,16 +34,17 @@ function confirmInput(event)
 {
     event.target.readOnly = true
     event.target.className = 'text'
+    document.querySelector('.input-area').lastElementChild.firstElementChild.focus()
 }
 // Removes or clears the line
 function clearLine(event)
 {
     let parent = document.querySelector('.input-area');
     let line = event.target.parentElement.parentElement;
-    if (line.firstElementChild.tagName == 'INPUT')
+    if (line.firstElementChild.tagName == 'INPUT' && line.firstElementChild.readOnly == false)
     {
         if (line.firstElementChild.value != '') line.querySelector('input').value = '';
-        else if (parent.childElementCount != 1) {console.log(line.className); line.remove();}
+        else if (parent.childElementCount != 1) {line.remove();}
     }
     else line.remove();
 }
@@ -53,11 +67,18 @@ function update()
     document.querySelectorAll('input')
     .forEach(item => {
         item.addEventListener('keyup', (event) =>
-        { if (event.key == 'Enter' && !onlySpaces(event.target.value)) {confirmInput(event); addElement();}})
+        { if (event.key == 'Enter' && !onlySpaces(event.target.value)) {
+            confirmInput(event)
+            let blankLineCounter = 0
+            document.querySelectorAll('input').forEach(item => {
+                if (item.value == '') blankLineCounter++;
+            })
+            if (!(blankLineCounter >= 1)) addElement();
+        }})
     })
 } update()
 // Add input to end
-function addElement()
+function addElement(event)
 {
     let newElement = document.createElement('div')
     newElement.className = 'line'
@@ -65,6 +86,7 @@ function addElement()
     document.querySelector('.input-area').append(newElement)
     document.querySelector('.input-area').lastElementChild.scrollIntoView({behavior: "smooth"}) 
     update()
+    document.querySelector('.input-area').lastElementChild.firstElementChild.focus()
 }
 // Add button listener
 document.querySelector('.add-button').addEventListener('click', addElement)

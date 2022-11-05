@@ -24,7 +24,7 @@ body {
     transition: box-shadow 300ms ease-in-out, transform 300ms ease-in-out;
 }
 .card:hover {
-    transform: scale(1.01);
+    /* transform: scale(1.01); */
     box-shadow: 0 0 7px lightgray;
 }
 .yellow-line {
@@ -74,9 +74,19 @@ body {
     margin: 10px 0 0 0;
     padding: 0;
     border-radius: 10px;
-    border: 1px solid lightgray;
+    outline: 1px solid lightgray;
     max-height: 161px;
     overflow: auto;
+}
+/* testing the fixed position */
+.input-area div:last-child {
+    backdrop-filter: blur(4px);
+    position: sticky;
+    bottom: 0;
+}
+.input-area div:last-child input {
+    background-color: transparent;
+    outline: white;
 }
 input {
     border: 0;
@@ -89,18 +99,6 @@ input {
     font-size: 14px;
     font-family: Roboto;
 }
-/* .text {
-    border: 0;
-    display: flex;
-    align-items: center;
-    width: 195px;
-    height: 30px;
-    outline: 0;
-    margin: 0 0 0 15px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-family: Roboto;
-} */
 .delete {
     height: 20px;
     cursor: pointer;
@@ -129,7 +127,7 @@ input {
 .add-button:hover {
     -webkit-filter: brightness(90%);
     -webkit-transition: all 0.5s ease;
-    box-shadow: 0 0 10px gray;
+    box-shadow: 0 0 8px gray;
 }
 .add-button:active {
     transform: scale(1.04);
@@ -154,4 +152,29 @@ input {
     width: 100px;
     color: white;
     text-align: center;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #fafafafa; 
+    border-radius: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: lightgray; 
+    border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #BBB;
+}
+::-webkit-scrollbar-button {
+    opacity: 0%;
+    height: 3px;
 }
