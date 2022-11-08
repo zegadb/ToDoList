@@ -71,8 +71,7 @@ function update()
             confirmInput(event)
             let blankLineCounter = 0
             document.querySelectorAll('input').forEach(item => {
-                if (item.value == '') blankLineCounter++;
-            })
+                if (item.value == '') blankLineCounter++; })
             if (!(blankLineCounter >= 1)) addElement(event);
         }})
     })
