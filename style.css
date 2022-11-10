@@ -76,6 +76,7 @@ body {
     border-radius: 10px;
     outline: 1px solid lightgray;
     max-height: 161px;
+    min-height: 30px;
     overflow: auto;
 }
 /* testing the fixed position */
@@ -153,24 +154,17 @@ input {
     color: white;
     text-align: center;
 }
-/* width */
 ::-webkit-scrollbar {
     width: 4px;
 }
-
-/* Track */
 ::-webkit-scrollbar-track {
     background: #fafafafa; 
     border-radius: 20px;
 }
-
-/* Handle */
 ::-webkit-scrollbar-thumb {
     background: lightgray; 
     border-radius: 20px;
 }
-
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #BBB;
 }
