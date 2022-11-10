@@ -43,6 +43,7 @@ function clearLine(event)
     let line = event.target.parentElement.parentElement
     if (event.target.parentElement.parentElement.className == 'input-area')
         line = event.target.parentElement;
+    if (parent.childElementCount == 1) {line.firstElementChild.value = ''; line.firstElementChild.readOnly = false;}
     if (line.firstElementChild.tagName == 'INPUT' && line.firstElementChild.readOnly == false)
     {
         if (line.firstElementChild.value != '') line.querySelector('input').value = '';
