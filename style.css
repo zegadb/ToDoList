@@ -42,15 +42,16 @@ body {
     padding: 0;
 }
 .sort {
+    padding: 0;
     align-self: flex-end;
-    margin: 15px 40px 0 0;
-    cursor: pointer;
+    margin: 15px 45px 0 0;
     background-color: transparent;
     border: 0;
     transition: transform 80ms ease-in-out;
 }
 .sort img {
     -webkit-filter: brightness(100%);
+    cursor: pointer;
 }
 .sort img:hover {
     -webkit-filter: brightness(0%);
@@ -79,12 +80,12 @@ body {
     min-height: 30px;
     overflow: auto;
 }
-/* testing the fixed position */
+/* testing the fixed position
 .input-area div:last-child {
     backdrop-filter: blur(4px);
     position: sticky;
     bottom: 0;
-}
+} */
 .input-area div:last-child input {
     background-color: transparent;
     outline: white;
@@ -102,11 +103,13 @@ input {
 }
 .delete {
     height: 20px;
-    cursor: pointer;
     padding: 0;
     background-color: transparent;
     border: 0;
     border-radius: 30px 30px 30px 30px;
+}
+.delete img {
+    cursor: pointer;
 }
 .add-button {
     margin: 20px 0;
